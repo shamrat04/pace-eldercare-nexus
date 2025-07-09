@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,7 +10,7 @@ import {
   FileText, 
   Image, 
   FileSpreadsheet, 
-  FilePdf,
+  FileType,
   Search,
   Tag,
   Eye,
@@ -111,7 +110,7 @@ const DocumentUpload = () => {
   ];
 
   const getFileIcon = (type: string) => {
-    if (type.includes('pdf')) return FilePdf;
+    if (type.includes('pdf')) return FileType;
     if (type.includes('image')) return Image;
     if (type.includes('sheet')) return FileSpreadsheet;
     if (type.includes('word')) return FileText;
