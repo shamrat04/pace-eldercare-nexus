@@ -7,9 +7,17 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LoginPage from './components/auth/LoginPage';
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
+import IntakePage from './components/intake/IntakePage';
 import ParticipantProfile from './components/participants/ParticipantProfile';
-import AssessmentBuilder from './components/assessments/AssessmentBuilder';
+import AssessmentPage from './components/assessments/AssessmentPage';
 import IDTNotes from './components/idt/IDTNotes';
+import MedicationsPage from './components/medications/MedicationsPage';
+import DaycarePage from './components/daycare/DaycarePage';
+import ClaimsPage from './components/claims/ClaimsPage';
+import QualityPage from './components/quality/QualityPage';
+import ReportsPage from './components/reports/ReportsPage';
+import AuthorizationsPage from './components/authorizations/AuthorizationsPage';
+import TransportationPage from './components/transportation/TransportationPage';
 import DocumentUpload from './components/documents/DocumentUpload';
 
 const queryClient = new QueryClient();
@@ -35,25 +43,32 @@ const App = () => {
     switch (currentPage) {
       case 'dashboard':
         return <Dashboard />;
+      case 'intake':
+        return <IntakePage />;
       case 'participants':
         return <ParticipantProfile />;
       case 'assessments':
-        return <AssessmentBuilder />;
+        return <AssessmentPage />;
       case 'idt':
         return <IDTNotes />;
+      case 'authorizations':
+        return <AuthorizationsPage />;
+      case 'daycare':
+        return <DaycarePage />;
+      case 'medications':
+        return <MedicationsPage />;
+      case 'transportation':
+        return <TransportationPage />;
+      case 'claims':
+        return <ClaimsPage />;
+      case 'quality':
+        return <QualityPage />;
+      case 'reports':
+        return <ReportsPage />;
       case 'documents':
         return <DocumentUpload />;
       default:
-        return (
-          <div className="p-6 bg-gray-50 min-h-screen">
-            <div className="text-center py-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)} Module
-              </h2>
-              <p className="text-gray-600">This module is under development.</p>
-            </div>
-          </div>
-        );
+        return <Dashboard />;
     }
   };
 
