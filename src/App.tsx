@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,6 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import IntakePage from './components/intake/IntakePage';
 import ParticipantProfile from './components/participants/ParticipantProfile';
+import ProvidersPage from './components/providers/ProvidersPage';
 import AssessmentPage from './components/assessments/AssessmentPage';
 import IDTNotes from './components/idt/IDTNotes';
 import MedicationsPage from './components/medications/MedicationsPage';
@@ -47,6 +47,8 @@ const App = () => {
         return <IntakePage />;
       case 'participants':
         return <ParticipantProfile />;
+      case 'providers':
+        return <ProvidersPage />;
       case 'assessments':
         return <AssessmentPage />;
       case 'idt':

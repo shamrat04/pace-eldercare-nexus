@@ -1,25 +1,26 @@
 
-import { useState } from 'react';
+import React from 'react';
+import { 
+  LayoutDashboard, 
+  Users, 
+  FileText, 
+  ClipboardList, 
+  MessageSquare,
+  Shield,
+  Calendar,
+  Pill,
+  Car,
+  DollarSign,
+  BarChart3,
+  FileBarChart,
+  Upload,
+  UserCheck,
+  LogOut,
+  Menu
+} from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Home, 
-  UserPlus, 
-  Users, 
-  ClipboardList, 
-  FileCheck, 
-  Calendar, 
-  Pill, 
-  Car, 
-  CreditCard, 
-  BarChart3,
-  FileText,
-  Bell,
-  User,
-  LogOut,
-  Menu,
-  X
-} from 'lucide-react';
 
 interface NavbarProps {
   currentPage: string;
@@ -29,152 +30,111 @@ interface NavbarProps {
 }
 
 const Navbar = ({ currentPage, onPageChange, onLogout, userRole }: NavbarProps) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   const navigationItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: Home },
-    { id: 'intake', label: 'Intake', icon: UserPlus },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'intake', label: 'Intake', icon: Upload },
     { id: 'participants', label: 'Participants', icon: Users },
-    { id: 'idt', label: 'IDT', icon: Users },
+    { id: 'providers', label: 'Providers', icon: UserCheck },
     { id: 'assessments', label: 'Assessments', icon: ClipboardList },
-    { id: 'authorizations', label: 'Authorizations', icon: FileCheck },
-    { id: 'daycare', label: 'Day Care', icon: Calendar },
+    { id: 'idt', label: 'IDT Notes', icon: MessageSquare },
+    { id: 'authorizations', label: 'Authorizations', icon: Shield },
+    { id: 'daycare', label: 'Social Day Care', icon: Calendar },
     { id: 'medications', label: 'Medications', icon: Pill },
     { id: 'transportation', label: 'Transportation', icon: Car },
-    { id: 'claims', label: 'Claims', icon: CreditCard },
+    { id: 'claims', label: 'Claims', icon: DollarSign },
     { id: 'quality', label: 'Quality', icon: BarChart3 },
-    { id: 'reports', label: 'Reports', icon: FileText },
+    { id: 'reports', label: 'Reports', icon: FileBarChart },
+    { id: 'documents', label: 'Documents', icon: FileText },
   ];
 
-  const roleColors = {
-    clinical: 'bg-green-100 text-green-800',
-    admin: 'bg-blue-100 text-blue-800',
-    billing: 'bg-purple-100 text-purple-800',
-    quality: 'bg-orange-100 text-orange-800'
+  const getRoleBadgeColor = (role: string) => {
+    switch (role) {
+      case 'clinical': return 'bg-blue-100 text-blue-800';
+      case 'admin': return 'bg-purple-100 text-purple-800';
+      case 'billing': return 'bg-green-100 text-green-800';
+      case 'quality': return 'bg-orange-100 text-orange-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
   };
 
   return (
-    <>
-      {/* Desktop Navbar */}
-      <nav className="hidden lg:flex bg-white border-b border-gray-200 px-6 py-3 items-center justify-between">
-        <div className="flex items-center space-x-8">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">PACE EMR</span>
-          </div>
-          
-          <div className="flex items-center space-x-1">
-            {navigationItems.map((item) => (
-              <Button
-                key={item.id}
-                variant={currentPage === item.id ? "default" : "ghost"}
-                size="sm"
-                onClick={() => onPageChange(item.id)}
-                className={`flex items-center space-x-2 ${
-                  currentPage === item.id ? 'bg-blue-600 text-white' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                <item.icon className="w-4 h-4" />
-                <span>{item.label}</span>
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" className="relative">
-            <Bell className="w-4 h-4" />
-            <Badge className="absolute -top-1 -right-1 w-5 h-5 p-0 flex items-center justify-center bg-red-500">
-              3
-            </Badge>
-          </Button>
-          
-          <div className="flex items-center space-x-2">
-            <Badge className={roleColors[userRole as keyof typeof roleColors]}>
-              {userRole.toUpperCase()}
-            </Badge>
-            <Button variant="ghost" size="sm">
-              <User className="w-4 h-4 mr-2" />
-              John Doe
-            </Button>
-          </div>
-          
-          <Button variant="ghost" size="sm" onClick={onLogout}>
-            <LogOut className="w-4 h-4" />
-          </Button>
-        </div>
-      </nav>
-
-      {/* Mobile Navbar */}
-      <nav className="lg:hidden bg-white border-b border-gray-200">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">PACE EMR</span>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="sm" className="relative">
-              <Bell className="w-4 h-4" />
-              <Badge className="absolute -top-1 -right-1 w-4 h-4 p-0 flex items-center justify-center bg-red-500 text-xs">
-                3
-              </Badge>
-            </Button>
+    <nav className={`bg-white border-r border-gray-200 h-screen sticky top-0 transition-all duration-300 ${
+      isCollapsed ? 'w-16' : 'w-64'
+    }`}>
+      <div className="flex flex-col h-full">
+        {/* Header */}
+        <div className="p-4 border-b border-gray-200">
+          <div className="flex items-center justify-between">
+            {!isCollapsed && (
+              <div>
+                <h1 className="text-lg font-bold text-gray-900">PACE EMR</h1>
+                <p className="text-xs text-gray-500">Eldercare Nexus</p>
+              </div>
+            )}
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="p-2"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <Menu className="h-4 w-4" />
             </Button>
+          </div>
+          {!isCollapsed && userRole && (
+            <div className="mt-3">
+              <Badge className={getRoleBadgeColor(userRole)}>
+                {userRole.charAt(0).toUpperCase() + userRole.slice(1)} User
+              </Badge>
+            </div>
+          )}
+        </div>
+
+        {/* Navigation Items */}
+        <div className="flex-1 overflow-y-auto py-4">
+          <div className="space-y-1 px-2">
+            {navigationItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = currentPage === item.id;
+              
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onPageChange(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                  title={isCollapsed ? item.label : ''}
+                >
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
+                  {!isCollapsed && (
+                    <span className="truncate">{item.label}</span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="border-t border-gray-200 bg-white">
-            <div className="px-4 py-3 border-b border-gray-100">
-              <div className="flex items-center space-x-2">
-                <User className="w-4 h-4" />
-                <span className="font-medium">John Doe</span>
-                <Badge className={roleColors[userRole as keyof typeof roleColors]}>
-                  {userRole.toUpperCase()}
-                </Badge>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2 p-4">
-              {navigationItems.map((item) => (
-                <Button
-                  key={item.id}
-                  variant={currentPage === item.id ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => {
-                    onPageChange(item.id);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`flex items-center space-x-2 justify-start ${
-                    currentPage === item.id ? 'bg-blue-600 text-white' : 'text-gray-600'
-                  }`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                </Button>
-              ))}
-            </div>
-            <div className="border-t border-gray-100 p-4">
-              <Button variant="ghost" size="sm" onClick={onLogout} className="w-full justify-start">
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
-          </div>
-        )}
-      </nav>
-    </>
+        {/* Footer */}
+        <div className="p-4 border-t border-gray-200">
+          <Button
+            variant="ghost"
+            onClick={onLogout}
+            className={`w-full flex items-center gap-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 ${
+              isCollapsed ? 'px-2' : 'px-3'
+            }`}
+            title={isCollapsed ? 'Logout' : ''}
+          >
+            <LogOut className="h-5 w-5" />
+            {!isCollapsed && <span>Logout</span>}
+          </Button>
+        </div>
+      </div>
+    </nav>
   );
 };
 
