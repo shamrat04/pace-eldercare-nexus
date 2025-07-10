@@ -22,7 +22,9 @@ import DocumentUpload from './components/documents/DocumentUpload';
 
 const queryClient = new QueryClient();
 
-const App = () => {
+const App: React.FC = () => {
+  console.log('App component rendering...');
+  
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [userRole, setUserRole] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState('dashboard');
