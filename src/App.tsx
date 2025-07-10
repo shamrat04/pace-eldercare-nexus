@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -23,9 +22,9 @@ import DocumentUpload from './components/documents/DocumentUpload';
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userRole, setUserRole] = useState('');
-  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [userRole, setUserRole] = React.useState('');
+  const [currentPage, setCurrentPage] = React.useState('dashboard');
 
   const handleLogin = (role: string) => {
     setIsAuthenticated(true);
