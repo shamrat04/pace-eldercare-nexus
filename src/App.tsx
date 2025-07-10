@@ -1,7 +1,7 @@
+
 import { useState } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LoginPage from './components/auth/LoginPage';
 import Navbar from './components/layout/Navbar';
@@ -76,25 +76,23 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        {!isAuthenticated ? (
-          <LoginPage onLogin={handleLogin} />
-        ) : (
-          <div className="min-h-screen bg-white">
-            <Navbar 
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              onLogout={handleLogout}
-              userRole={userRole}
-            />
-            <main>
-              {renderCurrentPage()}
-            </main>
-          </div>
-        )}
-      </TooltipProvider>
+      <Toaster />
+      <Sonner />
+      {!isAuthenticated ? (
+        <LoginPage onLogin={handleLogin} />
+      ) : (
+        <div className="min-h-screen bg-white">
+          <Navbar 
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            onLogout={handleLogout}
+            userRole={userRole}
+          />
+          <main>
+            {renderCurrentPage()}
+          </main>
+        </div>
+      )}
     </QueryClientProvider>
   );
 };
