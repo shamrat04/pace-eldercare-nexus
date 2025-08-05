@@ -18,6 +18,7 @@ import ReportsPage from './components/reports/ReportsPage';
 import AuthorizationsPage from './components/authorizations/AuthorizationsPage';
 import TransportationPage from './components/transportation/TransportationPage';
 import DocumentUpload from './components/documents/DocumentUpload';
+import MemberManagementPage from './components/members/MemberManagementPage';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,8 @@ const App: React.FC = () => {
         return <ReportsPage />;
       case 'documents':
         return <DocumentUpload />;
+      case 'members':
+        return <MemberManagementPage />;
       default:
         return <Dashboard />;
     }
