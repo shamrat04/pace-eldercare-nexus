@@ -34,6 +34,7 @@ const Navbar = ({ currentPage, onPageChange, onLogout, userRole }: NavbarProps) 
   const navigationItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'intake', label: 'Intake', icon: UserPlus },
+    { id: 'members', label: 'Members', icon: Users },
     { id: 'participants', label: 'Participants', icon: Users },
     { id: 'providers', label: 'Providers', icon: Users },
     { id: 'idt', label: 'IDT', icon: Users },
