@@ -19,6 +19,7 @@ import AuthorizationsPage from './components/authorizations/AuthorizationsPage';
 import TransportationPage from './components/transportation/TransportationPage';
 import DocumentUpload from './components/documents/DocumentUpload';
 import MemberManagementPage from './components/members/MemberManagementPage';
+import PACEIntakePage from './components/pace/PACEIntakePage';
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,8 @@ const App: React.FC = () => {
         return <DocumentUpload />;
       case 'members':
         return <MemberManagementPage />;
+      case 'pace-intake':
+        return <PACEIntakePage />;
       default:
         return <Dashboard />;
     }
