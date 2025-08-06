@@ -35,6 +35,7 @@ const Navbar = ({ currentPage, onPageChange, onLogout, userRole }: NavbarProps) 
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'intake', label: 'Intake', icon: UserPlus },
     { id: 'members', label: 'Members', icon: Users },
+    { id: 'pace-dashboard', label: 'PACE Dashboard', icon: Users },
     { id: 'pace-intake', label: 'PACE Intake', icon: UserPlus },
     { id: 'participants', label: 'Participants', icon: Users },
     { id: 'providers', label: 'Providers', icon: Users },

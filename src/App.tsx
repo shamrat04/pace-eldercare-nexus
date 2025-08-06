@@ -20,6 +20,7 @@ import TransportationPage from './components/transportation/TransportationPage';
 import DocumentUpload from './components/documents/DocumentUpload';
 import MemberManagementPage from './components/members/MemberManagementPage';
 import PACEIntakePage from './components/pace/PACEIntakePage';
+import PACEIntakeDashboard from './components/pace/PACEIntakeDashboard';
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,8 @@ const App: React.FC = () => {
         return <MemberManagementPage />;
       case 'pace-intake':
         return <PACEIntakePage />;
+      case 'pace-dashboard':
+        return <PACEIntakeDashboard />;
       default:
         return <Dashboard />;
     }
